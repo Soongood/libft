@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 20:57:23 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/17 21:27:43 by trobbin          ###   ########.fr       */
+/*   Created: 2019/09/18 19:53:58 by trobbin           #+#    #+#             */
+/*   Updated: 2019/09/21 18:18:48 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
+	unsigned char *pdst;
+	unsigned char *psrc;
+
+	pdst = (unsigned char *)dst;
+	psrc = (unsigned char *)src;
+	if (!dst && !src)
+		return (NULL);
+	if (dst == src)
+		return (dst);
+	if (dst < src)
+		return (ft_memcpy(pdst, psrc, len));
+	pdst += len;
+	psrc += len;
+	while (len--)
+		*--pdst = *--psrc;
+	return (dst);
 }

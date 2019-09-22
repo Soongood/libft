@@ -1,27 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 20:19:13 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/17 21:28:42 by trobbin          ###   ########.fr       */
+/*   Created: 2019/09/20 17:17:39 by trobbin           #+#    #+#             */
+/*   Updated: 2019/09/22 21:07:54 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+static	int		ft_length(int n)
 {
-	int	i;
+	int i;
 
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
+	i = 1;
+	if (n < 0)
 		i++;
+	while (n /= 10)
+		i++;
+	return (i);
+}
+
+char			*ft_itoa(int n)
+{
+	int		len;
+	char	*p;
+	long	temp;
+
+	temp = n;
+	len = ft_length(n) - 1;
+	p = ft_strnew(len + 1);
+	if (!p)
+		return (NULL);
+	if (n < 0)
+	{
+		p[0] = '-';
+		temp *= -1;
 	}
-	dst[i] = '\0';
-	return (dst);
+	while (len >= 0)
+	{
+		if (temp <= 9)
+		{
+			p[len--] = '0' + temp;
+			break ;
+		}
+		p[len--] = '0' + temp % 10;
+		temp /= 10;
+	}
+	return (p);
 }

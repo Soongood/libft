@@ -6,7 +6,7 @@
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 19:36:34 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/12 19:45:33 by trobbin          ###   ########.fr       */
+/*   Updated: 2019/09/19 22:45:30 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	ft_putstr(char const *s)
 {
-	while (*s)
-	{
-		ft_putchar(*s);
-		s++;
-	}
+	if (s)
+		while (*s)
+		{
+			ft_putchar(*s);
+			s++;
+		}
 }

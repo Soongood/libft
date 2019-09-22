@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 20:57:23 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/17 21:27:43 by trobbin          ###   ########.fr       */
+/*   Created: 2019/09/19 18:25:07 by trobbin           #+#    #+#             */
+/*   Updated: 2019/09/19 18:53:14 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	if (c >= '0' && c <= '9')
-		return (1);
+	int		i;
+	char	*p;
+
+	i = 0;
+	if (!s || !f)
+		return (NULL);
+	p = ft_strnew((size_t)ft_strlen(s));
+	if (!p)
+		return (NULL);
 	else
-		return (0);
+		while (s[i])
+		{
+			p[i] = f(s[i]);
+			i++;
+		}
+	return (p);
 }
