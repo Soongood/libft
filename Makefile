@@ -6,22 +6,23 @@
 #    By: trobbin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/17 15:48:48 by trobbin           #+#    #+#              #
-#    Updated: 2019/09/22 21:26:38 by trobbin          ###   ########.fr        #
+#    Updated: 2019/09/23 22:27:22 by trobbin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-FUNCTIONS = ft_atoi ft_bzero ft_isascii ft_isdigit ft_isalpha ft_isalnum ft_isprint ft_itoa ft_memalloc ft_memdel ft_memchr ft_memcmp ft_memcpy ft_memccpy ft_memset ft_memmove ft_putchar ft_putchar_fd ft_putnbr ft_putnbr_fd ft_putendl ft_putendl_fd ft_putstr ft_putstr_fd ft_strcmp ft_strncmp ft_strlen ft_strcpy ft_strnew ft_strdel ft_strclr ft_strcat ft_strequ ft_strnequ ft_striter ft_striteri  ft_strmap ft_strmapi ft_strncat ft_strncpy ft_strstr ft_strnstr ft_strtrim ft_strsub ft_strlcat ft_strchr ft_strrchr ft_strdup ft_strjoin ft_strsplit ft_toupper ft_tolower
-SOURCE = $(addsuffix .c, $(FUNCTIONS))
+FLAGS = -Wall -Wextra -Werror
+FUNCTIONS = ft_atoi ft_bzero ft_isascii ft_isdigit ft_isalpha ft_isalnum ft_isprint ft_itoa ft_lstadd ft_lstdel ft_lstdelone ft_lstiter ft_lstnew ft_memalloc ft_memdel ft_memchr ft_memcmp ft_memcpy ft_memccpy ft_memset ft_memmove ft_putchar ft_putchar_fd ft_putnbr ft_putnbr_fd ft_putendl ft_putendl_fd ft_putstr ft_putstr_fd ft_strcmp ft_strncmp ft_strlen ft_strcpy ft_strnew ft_strdel ft_strclr ft_strcat ft_strequ ft_strnequ ft_striter ft_striteri  ft_strmap ft_strmapi ft_strncat ft_strncpy ft_strstr ft_strnstr ft_strtrim ft_strsub ft_strlcat ft_strchr ft_strrchr ft_strdup ft_strjoin ft_strsplit ft_toupper ft_tolower
+O_FILES = $(addsuffix .o, $(FUNCTIONS))
 
 all: $(NAME)
 
-binary:
-	@gcc -Wall -Wextra -Werror -c $(SOURCE)
-
-$(NAME): binary
-	@ar rc $(NAME) $(addsuffix .o,$(FUNCTIONS))
+$(NAME): $(O_FILES)
+	@ar rc $(NAME) $(O_FILES)
 	@ranlib $(NAME)
+
+%.o: %.c
+	@gcc $(FLAGS) -o $@ -c $<
 
 clean:
 	@/bin/rm -f $(addsuffix .o,$(FUNCTIONS))
@@ -31,4 +32,4 @@ fclean: clean
 
 re: fclean all
 
-check: all fclean
+.PHONY: all clean fclean re
