@@ -6,7 +6,7 @@
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 19:35:01 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/23 22:52:12 by trobbin          ###   ########.fr       */
+/*   Updated: 2019/09/24 17:35:24 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	ft_lstadd(t_list **alst, t_list *new)
 {
-	if (alst)
+	if (alst && new)
 	{
-		if (new)
-		{
-			new->next = *alst;
-			*alst = new;
-		}
+		new->next = *alst;
+		*alst = new;
 	}
 }

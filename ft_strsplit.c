@@ -6,7 +6,7 @@
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 16:25:16 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/24 15:45:23 by trobbin          ###   ########.fr       */
+/*   Updated: 2019/09/24 22:16:42 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,24 @@ static	void	ft_strcopy(char **p, char const *s, char c, int qt)
 	length = 0;
 	tmp = -1;
 	while (*s)
-	{
-		if (*s != c)
+		if (*s++ != c)
 		{
-			while (*s != c && *s)
+			while (*(s - 1) != c && *(s - 1))
 			{
 				length++;
 				s++;
 			}
 			if (qt >= ++tmp)
 			{
-				p[tmp] = ft_strnew(length);
-				ft_strncpy(p[tmp], s - length, length);
+				if (!(p[tmp] = ft_strnew(length)))
+				{
+					ft_memdelarr((void **)p);
+					return ;
+				}
+				ft_strncpy(p[tmp], s - 1 - length, length);
 				length = 0;
 			}
 		}
-		else
-			s++;
-	}
 }
 
 char			**ft_strsplit(char const *s, char c)

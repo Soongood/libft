@@ -6,7 +6,7 @@
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 21:38:54 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/19 22:35:34 by trobbin          ###   ########.fr       */
+/*   Updated: 2019/09/24 20:46:01 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ char	*ft_strtrim(char const *s)
 	i = 0;
 	if (!s)
 		return (NULL);
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+	while (ft_isblank(s[i]) || s[i] == '\n')
 		i++;
 	if (!s[i])
 		return (ft_strnew(0));
 	size = ft_strlen(s);
-	while (s[size - 1] == ' ' || s[size - 1] == '\n' || s[size - 1] == '\t')
+	while (ft_isblank(s[size - 1]) || s[size - 1] == '\n')
 		size--;
 	return (ft_strsub(s, i, size - i));
 }

@@ -6,7 +6,7 @@
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 21:38:02 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/17 21:27:34 by trobbin          ###   ########.fr       */
+/*   Updated: 2019/09/24 19:50:46 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,5 @@
 
 int	ft_isalpha(int c)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	else
-		return (0);
+	return (ft_isupper(c) || ft_islower(c));
 }

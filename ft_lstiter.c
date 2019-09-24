@@ -6,7 +6,7 @@
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 19:52:38 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/23 20:04:44 by trobbin          ###   ########.fr       */
+/*   Updated: 2019/09/24 18:23:46 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
+	if (!f)
+		return ;
 	while (lst)
 	{
 		f(lst);
