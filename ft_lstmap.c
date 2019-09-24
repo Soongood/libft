@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/18 20:54:06 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/24 16:39:15 by trobbin          ###   ########.fr       */
+/*   Created: 2019/09/24 12:46:31 by trobbin           #+#    #+#             */
+/*   Updated: 2019/09/24 14:48:42 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *hay, const char *needle, size_t len)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	size_t	bg;
-	size_t	sm;
+	int		sign;
+	t_list	*tmp;
+	t_list	*head;
 
-	if (!*needle)
-		return ((char *)hay);
-	bg = ft_strlen(hay);
-	sm = ft_strlen(needle);
-	while (*hay && len)
+	sign = 0;
+	if (!lst || !f)
+		return (NULL);
+	while (lst)
 	{
-		if (*hay != *needle)
-			hay++;
-		else if (bg-- >= sm && len >= sm)
+		if ((tmp = f(lst)))
 		{
-			if (!ft_memcmp(hay, needle, sm))
-				return ((char *)hay);
+			if (!sign)
+			{
+				head = tmp;
+				sign = -1;
+			}
 			else
-				hay++;
+				head = ft_lstaddback(head, tmp);
+			lst = lst->next;
+			tmp = tmp->next;
 		}
-		len--;
+		else
+			return (NULL);
 	}
-	return (NULL);
+	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 18:09:06 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/23 21:52:15 by trobbin          ###   ########.fr       */
+/*   Updated: 2019/09/24 14:50:13 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ void			*ft_memset(void *b, int c, size_t len);
 size_t			ft_strlen(const char *s);
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 t_list			*ft_lstnew(void const *content, size_t content_size);
+t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_list			*ft_lstaddback(t_list *head, t_list *elem);
 
 #endif

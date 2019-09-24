@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstaddback.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: trobbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/18 20:54:06 by trobbin           #+#    #+#             */
-/*   Updated: 2019/09/24 16:39:15 by trobbin          ###   ########.fr       */
+/*   Created: 2019/09/24 14:24:16 by trobbin           #+#    #+#             */
+/*   Updated: 2019/09/24 14:46:30 by trobbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *hay, const char *needle, size_t len)
+t_list	*ft_lstaddback(t_list *head, t_list *elem)
 {
-	size_t	bg;
-	size_t	sm;
+	t_list *ptr;
 
-	if (!*needle)
-		return ((char *)hay);
-	bg = ft_strlen(hay);
-	sm = ft_strlen(needle);
-	while (*hay && len)
-	{
-		if (*hay != *needle)
-			hay++;
-		else if (bg-- >= sm && len >= sm)
-		{
-			if (!ft_memcmp(hay, needle, sm))
-				return ((char *)hay);
-			else
-				hay++;
-		}
-		len--;
-	}
-	return (NULL);
+	if (!head || !elem)
+		return (NULL);
+	ptr = head;
+	while (head->next)
+		head = head->next;
+	head->next = elem;
+	return (ptr);
 }
