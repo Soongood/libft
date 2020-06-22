@@ -1,6 +1,6 @@
 ## Libft 42 school's project
 
-My implementation of some of the Standard C Library functions.
+My implementation some of the Standard C Library functions.
 
 # What is libft?
 
